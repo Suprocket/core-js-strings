@@ -308,15 +308,17 @@ function containsSubstring(str, substring) {
  *   countVowels('XYZ') => 1
  */
 function countVowels(str) {
-  const lowerStr = str.toLowerCase();
-  const vowels = ['a', 'e', 'i', 'o', 'u'];
-  let vowelsCount = 0;
-  for (let i = 0; i < vowels.length; i += 1) {
-    if (vowels[i].includes(lowerStr)) {
-      vowelsCount += 1;
+  const arrOfStr = str.toLowerCase().split('');
+  const vowels = ['a', 'e', 'i', 'o', 'u', 'y'];
+  let current = 0;
+  for (let i = 0; i < arrOfStr.length; i += 1) {
+    for (let j = 0; j < vowels.length; j += 1) {
+      if (vowels[j] === arrOfStr[i]) {
+        current += 1;
+      }
     }
   }
-  return vowelsCount;
+  return current;
 }
 
 /**
@@ -332,8 +334,10 @@ function countVowels(str) {
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  const trueStr = str.replace(/[\s.,!?%]/g, '').toLowerCase();
+  const reverseStr = trueStr.split('').reverse().join('');
+  return trueStr === reverseStr;
 }
 
 /**
@@ -348,8 +352,15 @@ function isPalindrome(/* str */) {
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(/* sentence */) {
-  throw new Error('Not implemented');
+function findLongestWord(sentence) {
+  const arrOfSentence = sentence.split(' ');
+  let biggestSentence = arrOfSentence[0];
+  for (let i = 1; i < arrOfSentence.length; i += 1) {
+    if (biggestSentence.length < arrOfSentence[i].length) {
+      biggestSentence = arrOfSentence[i];
+    }
+  }
+  return biggestSentence;
 }
 
 /**
@@ -362,8 +373,14 @@ function findLongestWord(/* sentence */) {
  *   reverseWords('Hello World') => 'olleH dlroW'
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
-function reverseWords(/* str */) {
-  throw new Error('Not implemented');
+function reverseWords(str) {
+  const arr = str.split(' ');
+  const newArr = [];
+  for (let i = 0; i < arr.length; i += 1) {
+    const newWord = arr[i].split('').reverse().join('');
+    newArr.push(newWord);
+  }
+  return newArr.join(' ');
 }
 
 /**
